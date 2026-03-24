@@ -28,28 +28,28 @@ def insert_rows(cur,conn,schema,row):
 def update_rows(cur,conn,schema,row):
     try:
         if schema == 'staging':
-            video_id = 'video_id',
-            upload_date = 'publishedAt',
-            video_title = 'title',
-            video_views = 'viewCount',
-            likes_count = 'likeCount',
+            video_id = 'video_id'
+            upload_date = 'publishedAt'
+            video_title = 'title'
+            video_views = 'viewCount'
+            likes_count = 'likeCount'
             comments_count = 'commentCount'
         else:
-            video_id = 'Video_ID',
-            upload_date = 'Upload_Date',
-            video_title = 'Video_Title',
-            video_views = 'Video_Views',
-            likes_count = 'Likes_Count',
+            video_id = 'Video_ID'
+            upload_date = 'Upload_Date'
+            video_title = 'Video_Title'
+            video_views = 'Video_Views'
+            likes_count = 'Likes_Count'
             comments_count = 'Comments_Count'
 
         cur.execute(
             f"""
             UPDATE {schema}.{table}
-            SET "Video_Title" = %({video_title}s),
-                "Video_VIews" = %({video_views}s),
-                "Likes_Count" = %({likes_count}s),
-                "Comments_Count" = %({comments_count}s)
-            WHERE "Video_ID" = %({video_id}s) AND "Upload_Date" = %({upload_date}s);
+            SET "Video_Title" = %({video_title})s,
+                "Video_Views" = %({video_views})s,
+                "Likes_Count" = %({likes_count})s,
+                "Comments_Count" = %({comments_count})s
+            WHERE "Video_ID" = %({video_id})s AND "Upload_Date" = %({upload_date})s;
             """, row
         )
 

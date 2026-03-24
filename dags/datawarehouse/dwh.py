@@ -18,7 +18,7 @@ def staging_table():
         YT_data = load_data()
         create_schema(schema)
         create_table(schema)
-        table_ids = get_video_ids(cur, schema)
+        table_ids = get_video_ids(schema)
         for row in YT_data:
             if len(table_ids) == 0:
                 insert_rows(cur, conn, schema, row)
@@ -49,7 +49,7 @@ def core_table():
         conn, cur = get_conn_cursor()
         create_schema(schema)
         create_table(schema)
-        table_ids = get_video_ids(cur, schema)
+        table_ids = get_video_ids(schema)
         current_video_ids = set()
         cur.execute(f"SELECT * FROM staging.{table};")
         rows = cur.fetchall()

@@ -51,10 +51,10 @@ def create_table(schema):
     conn.commit()
     close_conn_cursor(conn, cur)
 
-def get_video_ids(cur, schema):
+def get_video_ids(schema):
+    conn, cur = get_conn_cursor()
     cur.execute(f"""SELECT "Video_ID" FROM {schema}.{table};""")
     ids = cur.fetchall()
-
     video_ids = [row['Video_ID'] for row in ids]
-
+    close_conn_cursor(conn, cur)
     return video_ids

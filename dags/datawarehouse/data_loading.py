@@ -1,11 +1,13 @@
 import json
 from datetime import date
 import logging
+import os
 
 logger = logging.getLogger(__name__)
 
 def load_data():
-    file_path = f"./data/YT_data_{date.today()}.json"
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(BASE_DIR, "..", "..", "data", f"YT_data_{date.today()}.json")
     try:
         logger.info(f"Processing file: YT_data_{date.today()}.json")
         with open(file_path, "r", encoding='utf-8') as raw_data:
